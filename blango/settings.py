@@ -11,8 +11,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+
 from configurations import Configuration, values
-import dj_database_url
+
 
 class Dev(Configuration):
     # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -43,6 +44,7 @@ class Dev(Configuration):
         # Extensions
         'crispy_forms',
         'crispy_bootstrap5',
+        "debug_toolbar",
     ]
 
     # For Crispy Forms
@@ -50,6 +52,7 @@ class Dev(Configuration):
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
     MIDDLEWARE = [
+        "debug_toolbar.middleware.DebugToolbarMiddleware",
         'django.middleware.security.SecurityMiddleware',
         'django.contrib.sessions.middleware.SessionMiddleware',
         'django.middleware.common.CommonMiddleware',
@@ -57,6 +60,12 @@ class Dev(Configuration):
         'django.contrib.auth.middleware.AuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    ]
+
+    # IP Addresses allowed to access the debug toolbar
+    INTERNAL_IPS = [
+        "localhost",
+        "127.0.0.1",
     ]
 
     ROOT_URLCONF = 'blango.urls'
