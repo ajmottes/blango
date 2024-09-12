@@ -55,6 +55,13 @@ class Dev(Configuration):
     # For our custom User class
     AUTH_USER_MODEL = "blango_auth.User"
 
+    # For development, we will use the console backend for emails
+    #  If one is not specified, Django will default to using the SMTP backend
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+    # Number of days a user has to verify email address in site registration process
+    ACCOUNT_ACTIVATION_DAYS = 7
+
     MIDDLEWARE = [
         "debug_toolbar.middleware.DebugToolbarMiddleware",
         'django.middleware.security.SecurityMiddleware',
@@ -73,6 +80,8 @@ class Dev(Configuration):
     ]
 
     ROOT_URLCONF = 'blango.urls'
+
+    LOGOUT_REDIRECT_URL = "/"
 
     TEMPLATES = [
         {
