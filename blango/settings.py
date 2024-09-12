@@ -38,6 +38,7 @@ class Dev(Configuration):
         'django.contrib.contenttypes',
         'django.contrib.sessions',
         'django.contrib.messages',
+        'django.contrib.sites',
         'django.contrib.staticfiles',
         'blango_auth',
         'blog',
@@ -46,6 +47,10 @@ class Dev(Configuration):
         'crispy_forms',
         'crispy_bootstrap5',
         "debug_toolbar",
+        'allauth',
+        'allauth.account',
+        'allauth.socialaccount',
+        'allauth.socialaccount.providers.google',
     ]
 
     # For Crispy Forms
@@ -62,6 +67,15 @@ class Dev(Configuration):
     # Number of days a user has to verify email address in site registration process
     ACCOUNT_ACTIVATION_DAYS = 7
 
+    # For social authentication
+    SITE_ID = 1
+
+    # To get Django Allauth to work with our custom user class
+    ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+    ACCOUNT_EMAIL_REQUIRED = True
+    ACCOUNT_USERNAME_REQUIRED = False
+    ACCOUNT_AUTHENTICATION_METHOD = "email"
+
     MIDDLEWARE = [
         "debug_toolbar.middleware.DebugToolbarMiddleware",
         'django.middleware.security.SecurityMiddleware',
@@ -71,6 +85,7 @@ class Dev(Configuration):
         'django.contrib.auth.middleware.AuthenticationMiddleware',
         'django.contrib.messages.middleware.MessageMiddleware',
         'django.middleware.clickjacking.XFrameOptionsMiddleware',
+        'allauth.account.middleware.AccountMiddleware',
     ]
 
     # IP Addresses allowed to access the debug toolbar
