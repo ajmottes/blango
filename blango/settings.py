@@ -39,6 +39,7 @@ class Dev(Configuration):
         'django.contrib.sessions',
         'django.contrib.messages',
         'django.contrib.staticfiles',
+        'blango_auth',
         'blog',
 
         # Extensions
@@ -50,6 +51,9 @@ class Dev(Configuration):
     # For Crispy Forms
     CRISPY_TEMPLATE_PACK = 'bootstrap5'
     CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+    # For our custom User class
+    AUTH_USER_MODEL = "blango_auth.User"
 
     MIDDLEWARE = [
         "debug_toolbar.middleware.DebugToolbarMiddleware",
