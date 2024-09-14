@@ -17,7 +17,8 @@ class Comment(models.Model):
 
 
 class Tag(models.Model):
-    value = models.TextField(max_length=100)
+    # make value unique -- will be using as lookup key in serializer
+    value = models.TextField(max_length=100, unique=True)
 
     def __str__(self):
         return self.value
