@@ -5,6 +5,7 @@ from rest_framework import generics, viewsets
 from rest_framework.decorators import action
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.response import Response
+from rest_framework.throttling import ScopedRateThrottle
 
 from blango_auth.models import User
 from blog.api.permissions import AuthorModifyOrReadOnly, IsAdminUserForObject
@@ -24,6 +25,9 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 class UserDetail(generics.RetrieveAPIView):
+    # could use to throttle by view instead of by user
+    #     throttle_classes = [ScopedRateThrottle]
+    #     throttle_scope = "user_api"
     lookup_field = "email"
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -57,6 +61,9 @@ class TagViewSet(viewsets.ModelViewSet):
 
 # combines the above PostList and PostDetail views into a single ViewSet
 class PostViewSet(viewsets.ModelViewSet):
+    # could use to throttle by view instead of by user
+    #     throttle_classes = [ScopedRateThrottle]
+    #     throttle_scope = "post_api"
     permission_classes = [AuthorModifyOrReadOnly | IsAdminUserForObject]
     queryset = Post.objects.all()
 

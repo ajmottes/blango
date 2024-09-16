@@ -89,6 +89,22 @@ class Dev(Configuration):
         "DEFAULT_PERMISSION_CLASSES": [
             "rest_framework.permissions.IsAuthenticatedOrReadOnly"
         ],
+        # settings for throttling
+        "DEFAULT_THROTTLE_CLASSES": [
+            "blog.api.throttling.AnonSustainedThrottle",
+            "blog.api.throttling.AnonBurstThrottle",
+            "blog.api.throttling.UserSustainedThrottle",
+            "blog.api.throttling.UserBurstThrottle",
+        ],
+        "DEFAULT_THROTTLE_RATES": {
+            "anon_sustained": "500/day",
+            "anon_burst": "10/minute",
+            "user_sustained": "5000/day",
+            "user_burst": "100/minute",
+            # can also throttle by view instead of by user
+            #   "post_api": "50/minute",
+            #   "user_api": "2000/day",
+        },
     }
 
     # For Swagger UI
