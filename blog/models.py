@@ -17,6 +17,10 @@ class Comment(models.Model):
 
 
 class Tag(models.Model):
+    # provide an ordering for pagination
+    class Meta:
+        ordering = ["value"]
+
     # make value unique -- will be using as lookup key in serializer
     value = models.TextField(max_length=100, unique=True)
 
