@@ -54,6 +54,7 @@ class Dev(Configuration):
         'rest_framework.authtoken',
         'drf_yasg',
         'django_filters',
+        'versatileimagefield',
     ]
 
     # For Crispy Forms
@@ -129,6 +130,12 @@ class Dev(Configuration):
             "Basic": {"type": "basic"},
         }
     }
+
+    # Enable media serving and serving
+    #  Defines where uploaded files are saved
+    MEDIA_ROOT = BASE_DIR / "media"
+    #  Tells Django which URL/path to serve media from
+    MEDIA_URL = "/media/"
 
     MIDDLEWARE = [
         "debug_toolbar.middleware.DebugToolbarMiddleware",
