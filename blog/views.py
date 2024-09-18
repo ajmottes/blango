@@ -41,3 +41,6 @@ def post_detail(request, slug):
 
 def post_table(request):
     return render(request, "blog/post-table.html")
+
+def react_test(request):
+    return render(request, "blog/react_test.html")

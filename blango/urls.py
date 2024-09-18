@@ -40,6 +40,7 @@ urlpatterns = [
     path("post/<slug>/", blog.views.post_detail, name="blog-post-detail"),
     path("api/v1/", include("blog.api.urls")),
     path("post-table/", blog.views.post_table, name="blog-post-table"),
+    path("react-test/", blog.views.react_test, name="react-test"),
 ]
 
 if settings.DEBUG:
